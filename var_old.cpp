@@ -13,7 +13,7 @@ using namespace std;
     // type_names[std::type_index(typeid(int))] = "int";
     // type_names[std::type_index(typeid(double))] = "double";
 
-    enum varType { 
+    enum varType {
         pointerType, 
         intType, 
         boolType,

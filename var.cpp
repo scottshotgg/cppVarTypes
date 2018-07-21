@@ -203,7 +203,7 @@ string foo(T var, const char* varname)
                 }
 
                 // something weird is happening here....
-                printf("wtffff");
+                printf("wtffff\n");
                 data = new map<string, var>(object);
                 // FIXME: ... somehow this will work ...
                 // *(map<string, var>*)data = object;
@@ -235,26 +235,36 @@ string foo(T var, const char* varname)
                     return (*(map<string, var>*)data)[attribute];
                 }
                  else {
-                     // TODO: FIXME: dont know why I can't get this to work and just return the { attribute: 0 } mapping
-                    // deallocate();
-                    // type = objectType;
-                    // var test = { attribute, 0 };
-                    // data = test.data;
-                    // cout << "test: " << test << endl;
-                    // cout << "test data: " << test[attribute] << endl;
-                    // // data = thing.data;fo
-                    // // TODO: investigate how leaky this is
-                    // // data = new map<string, var>({{ attribute, 0 }});
-                    // // cout << "attribute: " << data[attribute] << endl;
-                    // return (*(map<string, var>*)data)[attribute];
-                    // TODO: this produces the right map but our check messes it up
-                    // data = var({{ attribute, 0 }}).data;
+                    // // TODO: FIXME: dont know why I can't get this to work and just return the { attribute: 0 } mapping
+                    // // deallocate();
+                    // // type = objectType;
+                    // // var test = { attribute, 0 };
+                    // // data = test.data;
+                    // // cout << "test: " << test << endl;
+                    // // cout << "test data: " << test[attribute] << endl;
+                    // // // data = thing.data;fo
+                    // // // TODO: investigate how leaky this is
+                    // // // data = new map<string, var>({{ attribute, 0 }});
+                    // // // cout << "attribute: " << data[attribute] << endl;
+                    // // return (*(map<string, var>*)data)[attribute];
+                    // // TODO: this produces the right map but our check messes it up
+                    // // data = var({{ attribute, 0 }}).data;
 
-                    // deallocate();
-                    printf("wtf is going on \n");
+                    // // deallocate();
+                    // printf("wtf is going on \n");
+                    // type = objectType;
+                    // data = new map<string, var>({{ attribute, 0 }});
+                    // // return data;
+                    // // return (*(map<string, var>*)data)[attribute];
                     type = objectType;
-                    data = new map<string, var>({{ attribute, 0 }});
-                    return (*(map<string, var>*)data)[attribute];
+                    // data = new map<
+                    map<string, var> object;
+                    object[attribute] = 0;
+
+                    // something weird is happening here....
+                    printf("wtffff\n");
+                    data = (void*)&object;
+                    return (*(map<string, var>*)data)[attribute];                    
                 }
             }
 
@@ -648,12 +658,17 @@ int main() {
     var test = "6";
     test = 6;
 
-    test["me"] = {
-        "something", 7,
-        "this", {
-            "you", true,
-        }
-    };
+    // test["me"] = {
+    //     "something", 7,
+    //     "this", {
+    //         "you", true,
+    //     }
+    // };
+    // TODO: just use this as a hack right now
+    // test = {};
+    test = { "me", 6 };
+    test["me"] = "7";
+    
     // test = {};
     cout << "object_test: " << test << " " << endl;
     // test.deallocate();
@@ -695,6 +710,8 @@ int main() {
     // // int someVariable = 5;
 
     // // TestVarVsInt();
+
+    return 0;
 }
 
 
