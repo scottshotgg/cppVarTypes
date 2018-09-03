@@ -10,9 +10,9 @@ This library is used in the Express language runtime to enable the dynamic `var`
 <br>
 
 ## How-To
-
-See and run the test example in `test/test.cpp` using `run_test`.<br>
 In practice, for the most part, this library enables the ability to use variables in your C++ code just as you would use a variable in Javascript.
+
+See and run the test example in `test/test.cpp` using `run_test`.
 
 ```cpp
   // Initialize a new dynamically typed variable and cycle through the primitive types
@@ -37,5 +37,5 @@ In practice, for the most part, this library enables the ability to use variable
 
 ## Undefined Behavior _(for now)_
 
-1) You currently cannot use a `struct` or an array as the value of the dynamic variable.
-2) Keys for objects must be a `string` for now
+1) You currently cannot use a `struct`, any user-defined type, or an `[]` (array) as the value of the dynamic variable.
+2) Objects must map a `string` key to a `var` value
