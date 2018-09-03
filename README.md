@@ -1,2 +1,2 @@
 # varcpp
-a `var` type for cpp a la js
+abomination or not - a `var` type for C++ a la js
