@@ -1,4 +1,4 @@
-#include "var.cpp"
+#include "../var/var.cpp"
 #include <map>
 
 int TestVarVsInt() {

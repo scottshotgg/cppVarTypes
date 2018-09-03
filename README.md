@@ -1,2 +1,2 @@
-# cppVarTypes
-var types for cpp a la js
+# varcpp
+a `var` type for cpp a la js
