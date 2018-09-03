@@ -5,7 +5,7 @@ abomination or not - a `var` type for C++ a la js
 
 ## Usage
 
-This library is used in the runtime of Express to enable the dynamic `var` type.
+This library is used in the Express language runtime to enable the dynamic `var` type.
 
 <br>
 
