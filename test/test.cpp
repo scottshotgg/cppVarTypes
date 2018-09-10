@@ -53,14 +53,15 @@ int main() {
   // TestVarVsInt();
 
   map<string,var> me = map<string,var>{
-      { "hey", "its me" },
-      { "maybe", false },
-      { "floater", 7.88865 },
-      { "interino", 65 },
-      { "anotherObject", map<string,var>{
-          { "intBro", 789 },
-          { "fadedString", "woah" },
-      }},
+    { "hey", "its me" },
+    { "maybe", false },
+    { "floater", 7.88865 },
+    { "interino", 65 },
+    { "anotherObject", map<string,var>{
+        { "intBro", 789 },
+        { "fadedString", "woah" },
+      },
+    },
   };
   cout << "var: " << me << endl;
 
@@ -124,6 +125,10 @@ int main() {
 
   printf("Running speed test between int and var types....\n");
   TestVarVsInt();
+
+  test = { 6, 5, 7, "me" };
+
+  cout << test << endl;
 
   // ----
   // Second round

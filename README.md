@@ -1,5 +1,5 @@
-# varcpp
-abomination or not - a `var` type for C++ a la js
+# cppvar
+abomination or not - a `var` type for C++ a la Javascript
 
 <br>
 
@@ -12,6 +12,8 @@ This library is used in the Express language runtime to enable the dynamic `var`
 ## How-To
 In practice, for the most part, this library enables the ability to use variables in your C++ code just as you would use a variable in Javascript.
 
+On average, you will experience a performance decrease of a factor of 3x using the dynamically typed int variables vs statically typed int variables in a standard multiply-accumulate scenario over a million operations.
+The loss will be greater if more runtime conversions need to be done. <br>
 See and run the test example in `test/test.cpp` using `run_test`.
 
 ```cpp
