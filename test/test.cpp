@@ -1,5 +1,7 @@
 #include "../var/var.cpp"
 #include <map>
+#include <iostream>
+#include <iomanip>
 
 int TestVarVsInt() {
   int varOperationsAmount = 10000000; // one hundred thousand ops
@@ -112,7 +114,7 @@ int main() {
   cout << "float +: " << test + 1.11111 << endl;
   test -= 2.22222;
   cout << "float -=: " << test << endl;
-  cout << "float -: " << test - 2.22222 << endl;
+  cout << "float -: " << test - 1.11111 << endl;
   cout << endl;
 
   // FIXME: for some reason this thrashes the object de/cons calls
@@ -126,9 +128,22 @@ int main() {
   printf("Running speed test between int and var types....\n");
   TestVarVsInt();
 
-  test = { 6, 5, 7, "me" };
+  var t = {};
+  // t["some"] = {};
+  t["some"]["thing"]["blah"] = "else";
+  cout << t << endl;
 
-  cout << test << endl;
+  t["some"]["thing"]["blah"] = 6;
+  cout << t << endl;
+
+  t["some"]["thing"]["blah"] = false;
+  cout << t << endl;
+
+  t["some"]["thing"]["blah"] = 66.67383824732894;
+  cout << t << endl;
+
+  t["some"]["thing"]["blah"] = {"something", "else"};
+  cout << t << endl;
 
   // ----
   // Second round

@@ -34,6 +34,21 @@
     "istream": "cpp",
     "__functional_base_03": "cpp",
     "__tuple": "cpp",
-    "__string": "cpp"
+    "__string": "cpp",
+    "cmath": "cpp",
+    "new": "cpp",
+    "*.tcc": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "streambuf": "cpp",
+    "iomanip": "cpp"
   }
 }

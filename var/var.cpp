@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <list>
 #include <map>
 #include <string>
@@ -21,6 +22,7 @@ class var {
 private:
   varType type;
   void* data;
+  int precision;
 
 public:
   void deallocate() {
@@ -57,7 +59,7 @@ public:
     case floatType: {
       // cout << "float decons; Type: " << type << " Value: " << *(float *)data
       //    << " Pointer: " << data << endl;
-      delete (float *)data;
+      delete (double *)data;
       break;
     }
 
@@ -101,12 +103,13 @@ public:
 
   var(char value) : type(charType), data(new char(value)) {}
 
-  var(float value) : type(floatType), data(new float(value)) {
+  var(float value) : type(floatType), data(new double(value)) {
     // cout << "float cons; Type: " << type << " Value: " << value
     //    << " Pointer: " << data << endl;
   }
 
-  var(double value) : type(floatType), data(new float(value)) {
+  var(double value) : type(floatType), data(new double(value)) {
+
     // cout << "float cons; Type: " << type << " Value: " << value
     //    << " Pointer: " << data << endl;
   }
@@ -193,7 +196,7 @@ public:
 
   void operator+=(const double right) {
     // printf("+= var int\n");
-    *(float *)data += right;
+    *(double *)data += right;
   }
 
   void operator+=(const string right) {
@@ -218,7 +221,7 @@ public:
 
   void operator-=(const double right) {
     // //printf("+= var int\n");
-    *(float *)data -= right;
+    *(double *)data -= right;
   }
 
   void operator-=(const string right) {
@@ -261,13 +264,13 @@ public:
 
   void operator=(const double right) {
     if (type == floatType) {
-      *(float *)data = right;
+      *(double *)data = right;
     } else {
       // var::~var();
       deallocate();
       // printf("float cons; Type: %u Value: %p\n", type, data);
       type = floatType;
-      data = new float(right);
+      data = new double(right);
       // *(float*)data = right;
     }
   }
@@ -328,7 +331,9 @@ public:
       return stream << "\"" << *(char *)v.data << "\"";
 
     case floatType:
-      return stream << *(float *)v.data;
+      return stream
+        << std::setprecision (std::numeric_limits<double>::digits10 + 1)
+        << *(double *)v.data;
 
     case stringType:
       // //cout << "printing string" << endl;;
@@ -406,11 +411,11 @@ bool operator+(const bool left, const var &right) {
 // }
 
 float operator+(const float left, const var &right) {
-  return left + *(float *)right.Value();
+  return (double)(left) + *(double *)right.Value();
 }
 
-float operator+(const double left, const var &right) {
-  return left + *(float *)right.Value();
+double operator+(const double left, const var &right) {
+  return left + *(double *)right.Value();
 }
 
 // String/Char* operations: convert char* to string with all of these functions
