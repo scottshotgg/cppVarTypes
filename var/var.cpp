@@ -34,18 +34,17 @@ public:
       break;
     }
 
-    case stringType: {
-      // cout << "string decons; Type: " << type << " Value: " << *(string
-      // *)data
-      //    << " Pointer: " << data << endl;
-      // delete (string *)data;
-      break;
-    }
-
     case boolType: {
       // cout << "bool decons; Type: " << type << " Value: " << *(bool *)data
       //    << " Pointer: " << data << endl;
       delete (bool *)data;
+      break;
+    }
+
+    case floatType: {
+      // cout << "float decons; Type: " << type << " Value: " << *(float *)data
+      //    << " Pointer: " << data << endl;
+      delete (double *)data;
       break;
     }
 
@@ -56,10 +55,11 @@ public:
       break;
     }
 
-    case floatType: {
-      // cout << "float decons; Type: " << type << " Value: " << *(float *)data
+    case stringType: {
+      // cout << "string decons; Type: " << type << " Value: " << *(string
+      // *)data
       //    << " Pointer: " << data << endl;
-      delete (double *)data;
+      // delete (string *)data;
       break;
     }
 
@@ -288,6 +288,10 @@ public:
       // *(string*)data = right;
     }
   }
+  
+  
+  friend bool operator>(const var &left, const var &right);
+  friend bool operator<(const var &left, const var &right);
 
   void operator=(const bool right) {
     if (type == boolType) {
@@ -368,6 +372,108 @@ public:
 // the value
 // https://stackoverflow.com/questions/4972795/how-do-i-typecast-with-type-info
 // https://stackoverflow.com/questions/2136998/using-a-stl-map-of-function-pointer
+
+// FIXME: for some reason this is already working
+bool operator>(const var &left, const var &right) {
+  // FIXME: gotta switch on the type here
+  // if they're the same type
+  //    compare the data values
+  // if they're different
+  //    compare using the 'upgrade-able types' formula
+
+    // If the types are the same ...
+  if (left.type == right.type) {
+    // Determine the type of comparison based on the type
+    switch (left.type) {
+      case intType: {
+        cout << "intType" << endl;
+        cout << *(int *)left.data << " " << *(int *)right.data << endl;
+        return *(int *)left.data > *(int *)right.data;
+      }
+
+      case boolType: {
+        cout << "boolType" << endl;
+        return *(bool *)left.data > *(bool *)right.data;
+      }
+
+      case floatType: {
+        cout << "floatType" << endl;
+        return *(double *)left.data > *(double *)right.data;
+      }
+
+      case charType: {
+        cout << "charType" << endl;
+        return *(char *)left.data > *(char *)right.data;
+      }
+
+      case stringType: {
+        cout << "stringType" << endl;
+        return *(int *)left.data > *(int *)right.data;
+      }
+
+      // case objectType: {
+      //   cout << "objectType" << endl;
+      //   return *(map<var, var> *)left.data > *(map<var, var> *)right.data;
+      // }
+    }
+  }
+  
+  return *(int *)left.data > *(int *)right.data;
+}
+
+// FIXME: for some reason this is already working
+bool operator<(const var &left, const var &right) {
+  // FIXME: gotta switch on the type here
+  // if they're the same type
+  //    compare the data values
+  // if they're different
+  //    compare using the 'upgrade-able types' formula
+
+  // If the types are the same ...
+  if (left.type == right.type) {
+    // Determine the type of comparison based on the type
+    switch (left.type) {
+      case intType: {
+        // cout << "intType" << endl;
+        // cout << *(int *)left.data << " " << *(int *)right.data << endl;
+        return *(int *)left.data < *(int *)right.data;
+      }
+
+      case boolType: {
+        // cout << "boolType" << endl;
+        return *(bool *)left.data < *(bool *)right.data;
+      }
+
+      case floatType: {
+        // cout << "floatType" << endl;
+        return *(double *)left.data < *(double *)right.data;
+      }
+
+      case charType: {
+        // cout << "charType" << endl;
+        return *(int *)left.data < *(int *)right.data;
+      }
+
+      case stringType: {
+        // cout << "stringType" << endl;
+        return *(string *)left.data < *(string *)right.data;
+      }
+
+      case objectType: {
+        // cout << "objectType" << endl;
+        // *(map<string, var> *)left.data < *(map<string, var> *)right.data;
+        // cout << "hey its me " << endl;
+        return *(map<string, var> *)left.data < *(map<string, var> *)right.data;
+      }
+    }
+  }
+
+  // TODO: got to do something if htere is a bool type becuase of the weak typing
+  if (left.type == boolType || right.type == boolType)
+    return true;
+
+  return *(int *)left.data < *(int *)right.data;
+}
 
 // Integer operations
 int operator+(const int left, const var &right) {

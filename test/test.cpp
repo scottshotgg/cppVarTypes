@@ -145,6 +145,28 @@ int main() {
   t["some"]["thing"]["blah"] = {"something", "else"};
   cout << t << endl;
 
+  cout << endl;
+
+  map<string, var> thingy = {};
+  thingy["something"] = "else";
+ 
+  map<var, var> thing = {};
+  thing[6] = thingy;
+  thing["6"] = 999;
+  thing[false] = "woah woah woah bro";
+  thing[0] = 0;
+  thing[1] = 1;
+  thing[thingy] = 1.23456789;
+  // thing[true] = "true woah woah bro";
+
+  cout << thing[6] << endl;
+  cout << thing["6"] << endl;
+  cout << thing[false] << endl;
+  cout << thing[thingy] << endl;
+  cout << thing[0] << endl;
+  cout << thing[1] << endl;
+  cout << thing[true] << endl;
+
   // ----
   // Second round
   // ----
