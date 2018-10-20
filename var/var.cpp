@@ -176,16 +176,16 @@ public:
 
   void *Value(void) const { return data; }
 
-  var &operator[](string attribute) {
+  var &operator[](var attribute) {
     if (type == objectType) {
-      return (*(map<string, var> *)data)[attribute];
+      return (*(map<var, var> *)data)[attribute];
     } else {
       type = objectType;
-      map<string, var> object;
+      map<var, var> object;
       object[attribute] = 0;
 
       data = (void *)&object;
-      return (*(map<string, var> *)data)[attribute];
+      return (*(map<var, var> *)data)[attribute];
     }
   }
 
@@ -345,7 +345,7 @@ public:
 
     case objectType: {
       int counter = 0;
-      map<string, var> objectMap = *(map<string, var> *)v.data;
+      map<var, var> objectMap = *(map<var, var> *)v.data;
       stream << "{ ";
       for (auto property : objectMap) {
         // stream << property.first << property.second.first <<
@@ -367,6 +367,8 @@ public:
     return stream;
   }
 };
+
+typedef var object;
 
 // TODO: for right now, instead of doing the map[string]function to figure out
 // the value
@@ -461,9 +463,9 @@ bool operator<(const var &left, const var &right) {
 
       case objectType: {
         // cout << "objectType" << endl;
-        // *(map<string, var> *)left.data < *(map<string, var> *)right.data;
+        // *(map<var, var> *)left.data < *(map<var, var> *)right.data;
         // cout << "hey its me " << endl;
-        return *(map<string, var> *)left.data < *(map<string, var> *)right.data;
+        return *(map<var, var> *)left.data < *(map<var, var> *)right.data;
       }
     }
   }
